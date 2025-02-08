@@ -1,0 +1,87 @@
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+public class Program14 extends MouseAdapter
+{
+ JButton red;
+ JButton yellow;
+ JButton green;
+ public void createTraffic()
+ {
+ JFrame f=new JFrame("Traffic Light");
+ f.setBounds(100,100,400,500);
+ f.setLayout(null);
+ JRadioButton r1=new JRadioButton("RED");
+ JRadioButton r2=new JRadioButton("YELLOW");
+ JRadioButton r3=new JRadioButton("GREEN");
+ JRadioButton r4=new JRadioButton("CLEAR");
+ red =new JButton();
+ yellow=new JButton();
+ green=new JButton();
+ r1.setBounds(40,40,60,60);
+ r2.setBounds(40,80,120,60);
+ r3.setBounds(40,120,120,60);
+ r4.setBounds(40,160,120,60);
+ red.setBounds(200,40,120,120);
+ yellow.setBounds(200,160,120,120);
+ green.setBounds(200,280,120,120);
+ f.add(r1);
+ f.add(r2);
+ f.add(r3);
+ f.add(r4);
+ f.add(red);
+ f.add(yellow);
+ f.add(green);
+ ButtonGroup b=new ButtonGroup();
+ b.add(r1);
+ b.add(r2);
+ b.add(r3);
+ b.add(r4);
+ f.setVisible(true);
+ f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+ r1.addMouseListener(this);
+ r2.addMouseListener(this);
+ r3.addMouseListener(this);
+ r4.addMouseListener(this);
+ red.addMouseListener(this);
+ yellow.addMouseListener(this);
+ green.addMouseListener(this);
+ }
+ public void mousePressed(MouseEvent e)
+ {
+ JRadioButton b1=(JRadioButton)e.getSource();
+ String n1=b1.getText();
+ if(n1.equals("RED"))
+ {
+ red.setBackground(Color.RED);
+ red.setOpaque(true);
+ yellow.setBackground(Color.WHITE);
+ green.setBackground(Color.WHITE);
+ }
+ else if(n1.equals("YELLOW"))
+ {
+ yellow.setBackground(Color.YELLOW);
+ yellow.setOpaque(true);
+ red.setBackground(Color.WHITE);
+ green.setBackground(Color.WHITE);
+ }
+ else if(n1.equals("GREEN"))
+ {
+ green.setBackground(Color.GREEN);
+ green.setOpaque(true);
+ red.setBackground(Color.WHITE);
+ yellow.setBackground(Color.WHITE);
+ }
+ else
+ {
+ red.setBackground(Color.WHITE);
+ yellow.setBackground(Color.WHITE);
+ green.setBackground(Color.WHITE);
+ }
+ }
+ public static void main(String[] args)
+ {
+ Program14 t=new Program14();
+ t.createTraffic();
+ }
+}
