@@ -1,0 +1,51 @@
+import java.io.*;
+class EvenException extends Exception
+{
+ EvenException(String msg)
+ {
+ super(msg);
+ }
+}
+class OddException extends Exception
+{
+ OddException(String msg)
+ {
+ super(msg);
+ }
+}
+public class Program10
+{
+ static void check_num(int num) throws EvenException,OddException
+ {
+ if(num%2==0)
+ {
+ throw new EvenException("It is an even number");
+ }
+ else
+ {
+ throw new OddException("It is an odd number");
+ }
+ }
+ public static void main(String[] args) throws IOException
+ {
+ try
+ {
+ BufferedReader r=new BufferedReader(new InputStreamReader(System.in));
+ System.out.println("Enter number:");
+ int num=Integer.parseInt(r.readLine());
+ check_num(num);
+ }
+ catch(EvenException e)
+ {
+ System.out.println(e.getMessage());
+ }
+ catch(OddException e)
+ {
+ System.out.println(e.getMessage());
+ }
+ finally
+ {
+ System.out.println("This block will always execute");
+ }
+ }
+}
