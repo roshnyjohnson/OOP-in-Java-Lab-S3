@@ -1,0 +1,49 @@
+class Matrix
+{
+ protected int value[][];
+ protected int r,c;
+ Matrix()
+ {
+ }
+ Matrix(int value[][],int r,int c)
+ {
+ this.value=value;
+ this.r=r;
+ this.c=c;
+ }
+ public Matrix multiply(Matrix m2)
+ {
+ Matrix result=new Matrix();
+ result.value=new int[this.r][m2.c];
+ for(int i=0;i<this.r;i++)
+ {
+ for(int j=0;j<m2.c;j++)
+ {
+ result.value[i][j]=0;
+ for(int k=0;k<this.c;k++)
+ {
+ result.value[i][j]+=this.value[i][k]*m2.value[k][j];
+ }
+ }
+ }
+ return result;
+ }
+}
+public class Program3Class
+{
+ public static void main(String[] args)
+ {
+ Matrix m1=new Matrix(new int[][]{{1,0,1},{2,1,4}},2,3);
+ Matrix m2=new Matrix(new int[][]{{2,1},{3,4},{0,1}},3,2);
+ Matrix m=new Matrix();
+ m= m1.multiply(m2);
+ for(int i=0;i<2;i++)
+ {
+ for(int j=0;j<2;j++)
+ {
+ System.out.print(m.value[i][j]+" ");
+ }
+ System.out.println();
+ }
+ }
+}
