@@ -1,0 +1,30 @@
+class FrequencyCalculator
+{
+ protected char str[];
+ protected char ch;
+ FrequencyCalculator(char str[],char ch)
+ {
+ this.str=str;
+ this.ch=ch;
+ }
+ public int get_frequency()
+ {
+ int count=0;
+ for(int i=0;i<str.length;i++)
+ {
+ if(str[i]==ch)
+ {
+ count++;
+ }
+ }
+ return count;
+ }
+}
+public class Program2Class
+{
+ public static void main(String[] args)
+ {
+ FrequencyCalculator f=new FrequencyCalculator(new char[]{'i','r','i','n','d','o','m','i','n','i','c'},'i');
+ System.out.println("Frequency of " +f.ch+ " is " +f.get_frequency());
+ }
+}
