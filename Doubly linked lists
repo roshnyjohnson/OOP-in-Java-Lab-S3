@@ -1,0 +1,135 @@
+import  java.io.*; 
+class Node 
+{ 
+   int data; 
+   Node Rlink; 
+   Node Llink; 
+   Node(int data) 
+   { 
+      this.data=data; 
+      this.Rlink=null; 
+      this.Llink=null; 
+   } 
+} 
+class DoublyLinkedList 
+{ 
+   Node head; 
+   Node tail; 
+   int data; 
+   int key; 
+   DoublyLinkedList() 
+   { 
+      this.head=new Node(-1); 
+      this.tail=new Node(-1); 
+      this.head.Rlink=tail; 
+      this.tail.Llink=head; 
+   } 
+   public void insert(int data) 
+   { 
+      Node new_node=new Node(data); 
+      Node last=tail.Llink; 
+      last.Rlink=new_node; 
+      new_node.Llink=last; 
+      new_node.Rlink=tail; 
+      tail.Llink=new_node; 
+   } 
+   public void delete(int key) 
+   { 
+      Node ptr=head.Rlink; 
+      if(ptr==tail) 
+      { 
+         System.out.println("List is empty"); 
+      } 
+      else 
+      { 
+          while(ptr!=tail&&ptr.data!=key) 
+          { 
+             ptr=ptr.Rlink; 
+           } 
+           if(ptr==tail) 
+           { 
+              System.out.println("Element not found"); 
+            } 
+           else 
+           { 
+               Node previous=ptr.Llink; 
+               Node next=ptr.Rlink; 
+               previous.Rlink=next; 
+               next.Llink=previous; 
+               System.out.println("Deleted element:"+key); 
+           } 
+      } 
+   } 
+   public void display() 
+   { 
+      Node ptr=head.Rlink; 
+      if(head.Rlink==null) 
+      { 
+         System.out.println("List is empty"); 
+      } 
+      else if(head.Rlink==tail) 
+      { 
+         System.out.println("List is empty"); 
+      } 
+      else 
+      { 
+         while(ptr.Rlink!=null) 
+         { 
+            System.out.print(ptr.data+" "); 
+            System.out.println(); 
+            ptr=ptr.Rlink; 
+         } 
+      } 
+   } 
+} 
+public class Program16 
+{ 
+   public static void main(String[] args) 
+   { 
+      DoublyLinkedList d=new DoublyLinkedList(); 
+      try 
+      { 
+         BufferedReader r=new BufferedReader(new InputStreamReader(System.in)); 
+         int n; 
+         do 
+         { 
+            System.out.println("Menu:\n1-Insert\n2-Delete\n3-Display\n4-Exit\nEnter your choice:"); 
+            n=Integer.parseInt(r.readLine()); 
+            switch(n) 
+            { 
+               case 1: 
+               { 
+                     System.out.println("Enter the element to be inserted:"); 
+                     int item=Integer.parseInt(r.readLine()); 
+                     d.insert(item); 
+                     break; 
+               } 
+               case 2: 
+               { 
+                  System.out.println("Enter the element to be deleted:"); 
+                  int key=Integer.parseInt(r.readLine()); 
+                  d.delete(key); 
+                  break; 
+               } 
+               case 3: 
+               { 
+                  System.out.println("Elememts of Doubly linked list:"); 
+                  d.display(); 
+                  break; 
+               } 
+               case 4: 
+               { 
+                   break; 
+               } 
+               default:System.out.println("Invalid choice\n"); 
+            } 
+         } 
+         while(n!=4); 
+      } 
+      catch(Exception e) 
+      { 
+      } 
+   } 
+} 
+ 
+ 
