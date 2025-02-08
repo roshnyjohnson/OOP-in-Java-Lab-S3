@@ -1,0 +1,75 @@
+class Employee
+{
+ public char name[];
+ public int age;
+ public char phn[];
+ public char address[];
+ public long salary;
+ Employee(char name[],int age,char phn[],char address[],long salary)
+ {
+ this.name=name;
+ this.age=age;
+ this.phn=phn;
+ this.address=address;
+ this.salary=salary;
+ }
+ protected void printSalary()
+ {
+ System.out.println("Salary:"+salary);
+ }
+ protected void print_details()
+ {
+ System.out.print("Name:");
+ System.out.println(name);
+ System.out.println("Age:"+age);
+ System.out.print("Phone number:");
+ System.out.println(phn);
+ System.out.print("Address:");
+ System.out.println(address);
+ printSalary();
+ }
+}
+class Officer extends Employee
+{
+ protected char specialization[];
+ Officer(char name[],int age,char phn[],char address[],long salary,char specialization[])
+ {
+ super(name,age,phn,address,salary);
+ this.specialization=specialization;
+ System.out.println("Officer Details:");
+ super.print_details();
+ System.out.print("Specialization:");
+ System.out.println(specialization);
+ }
+}
+class Manager extends Employee
+{
+ private char dept[];
+ Manager(char name[],int age,char phn[],char address[],long salary,char dept[])
+ {
+ super(name,age,phn,address,salary);
+ this.dept=dept;
+ System.out.println("Manager Details:");
+ super.print_details();
+ System.out.print("Department:");
+ System.out.println(dept);
+ }
+}
+public class Program4
+{
+ public static void main(String[] args)
+ {
+ char officer_name[]={'I','r','i','n'};
+ char officer_phn[]={'1','2','3','4','5','6','7','8','9','0'};
+ char officer_address[]={'A','B','C',' ','h','o','u','s','e'};
+ char specialization[]={'I','T'};
+ char manager_name[]={'D','o','m','i','n','i','c'};
+ char manager_phn[]={'0','9','8','7','6','5','4','3','2','1'};
+ char manager_address[]={'1','2','3',' ','h','o','u','s','e'};
+ char department[]={'H','R'};
+ Officer o=new Officer(officer_name,25,officer_phn,officer_address,25000,specialization);
+ System.out.println();
+ Manager m=new
+Manager(manager_name,35,manager_phn,manager_address,45000,department);
+ }
+}
