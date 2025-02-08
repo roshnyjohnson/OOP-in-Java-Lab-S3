@@ -1,0 +1,68 @@
+ 
+import java.io.*; 
+public class Program17 
+{ 
+   public String[] names=new String[50]; 
+   public int partition(int l,int h) 
+   { 
+      int i=l+1,j=h; 
+      String pivot=names[l]; 
+      while(i<=j) 
+      { 
+         while(i<=h && names[i].compareTo(pivot)<=0) 
+         { 
+            i++; 
+         } 
+         while(j>=l && names[j].compareTo(pivot)>0) 
+         { 
+           j--; 
+         } 
+         if(i<j) 
+         { 
+            swap(i,j); 
+         } 
+      } 
+      swap(l,j); 
+      return j; 
+   } 
+   public void quick_sort(int l,int h) 
+   { 
+      if(l<h) 
+      { 
+          int p=partition(l,h); 
+          quick_sort(l,p-1); 
+          quick_sort(p+1,h); 
+      } 
+   } 
+   public void swap(int i,int j) 
+   { 
+      String temp=names[i]; 
+      names[i]=names[j]; 
+      names[j]=temp; 
+   } 
+   public static void main(String[] args) 
+   { 
+      try 
+      { 
+         Program17 obj=new Program17(); 
+         BufferedReader r=new BufferedReader(new InputStreamReader(System.in)); 
+         System.out.println("Enter the no.of names"); 
+         int n=Integer.parseInt(r.readLine()); 
+         System.out.println("Enter the names:"); 
+         for(int i=0;i<n;i++) 
+         { 
+            obj.names[i]=r.readLine(); 
+         } 
+         obj.quick_sort(0,n-1); 
+         System.out.println("Sorted names in ascending order:"); 
+         for(int i=0;i<n;i++) 
+         { 
+            System.out.println(obj.names[i]); 
+         } 
+      } 
+      catch(Exception e) 
+      { 
+         System.out.println("Error occured"); 
+      } 
+   } 
+} 
