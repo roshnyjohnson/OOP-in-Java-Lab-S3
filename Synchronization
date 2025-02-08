@@ -1,0 +1,62 @@
+import java.util.*;
+class Data
+{
+ public boolean even_finished;
+ public Data()
+ {
+ even_finished=true;
+ }
+}
+class OddThread extends Thread
+{
+ Data d1;
+ public OddThread(Data t)
+ {
+ super();
+ this.d1=t;
+ }
+ public void run()
+ {
+ for(int i=1;i<=1000;i+=2)
+ {
+ System.out.println(i);
+ synchronized(d1)
+ {
+ d1.even_finished=false;
+ }
+ while(d1.even_finished==false);
+ }
+ }
+}
+class EvenThread extends Thread
+{
+ Data d2;
+ public EvenThread(Data t)
+ {
+ super();
+ this.d2=t;
+ }
+ public void run()
+ {
+ for(int i=2;i<=1000;i+=2)
+ {
+ while(d2.even_finished==true);
+ System.out.println(i);
+ synchronized(d2)
+ {
+ d2.even_finished=true;
+ }
+ }
+ }
+}
+public class Program12
+{
+ public static void main(String[] args)
+ {
+ Data d=new Data();
+ OddThread t1=new OddThread(d);
+ EvenThread t2=new EvenThread(d);
+ t1.start();
+ t2.start();
+ }
+}
